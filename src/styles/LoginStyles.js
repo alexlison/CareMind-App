@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5F7F6',
     padding: 35,
-    paddingBottom:55,
+    paddingBottom: 55,
     justifyContent: 'center',
   },
 
@@ -43,7 +43,7 @@ export default StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
     padding: 28,
-    paddingBottom:35,
+    paddingBottom: 35,
     shadowColor: '#000',
     shadowOpacity: 0.08,
     shadowRadius: 20,
@@ -64,7 +64,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     marginTop: 15,
-    marginLeft:7,
+    marginLeft: 7,
     marginBottom: 10,
   },
 
@@ -102,9 +102,48 @@ export default StyleSheet.create({
     color: '#111827',
   },
 
+  /* ROW CONTAINER FOR REMEMBER ME AND FORGOT PASSWORD */
+  rowContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 16,
+    marginBottom: 8,
+  },
+
+  /* REMEMBER ME SECTION */
+  rememberMeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  checkbox: {
+    width: 20,
+    height: 20,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: '#2E7D32',
+    marginRight: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFFFFF',
+  },
+
+  rememberMeText: {
+    fontSize: 14,
+    color: '#475569',
+  },
+
+  /* FORGOT PASSWORD */
+  forgotPasswordText: {
+    color: '#2E7D32',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+
   /* BUTTON */
   button: {
-    marginTop: 24,
+    marginTop: 20,
     backgroundColor: '#2E7D32',
     padding: 16,
     borderRadius: 14,
@@ -117,9 +156,55 @@ export default StyleSheet.create({
     fontSize: 16,
   },
 
+  buttonDisabled: {
+    backgroundColor: '#A5D6A7',
+    opacity: 0.7,
+  },
+
+  /* TEST BUTTON */
+  testButton: {
+    marginTop: 12,
+    padding: 14,
+    backgroundColor: '#F1F5F9',
+    borderRadius: 14,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+  },
+
+  testButtonText: {
+    color: '#2E7D32',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+
+  /* DEMO CONTAINER */
+  demoContainer: {
+    marginTop: 20,
+    padding: 16,
+    backgroundColor: '#F1F5F9',
+    borderRadius: 14,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+  },
+
+  demoText: {
+    fontSize: 13,
+    color: '#64748B',
+    marginBottom: 6,
+    fontWeight: '500',
+  },
+
+  demoCredentials: {
+    fontSize: 15,
+    color: '#2E7D32',
+    fontWeight: '600',
+  },
+
   footer: {
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 25,
     fontSize: 12,
     color: '#9CA3AF',
   },

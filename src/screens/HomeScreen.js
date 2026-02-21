@@ -7,6 +7,7 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
+import { logoutUser } from '../services/HomeService';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../styles/HomeStyles';
 
@@ -25,7 +26,7 @@ const QUICK_ACTIONS = [
   { key: 'reports', icon: 'file-chart-outline', label: 'Reports', sub: 'View all' },
 ];
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const userName = 'Alex';
   const [activeTab, setActiveTab] = useState('home');
 
@@ -37,7 +38,7 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
-      {/* ─── TOP BAR ─── */}
+      {/* TOP BAR */}
       <View style={styles.topBar}>
         <View style={styles.topBarLeft}>
           <View style={styles.topBarLogoCircle}>
@@ -45,7 +46,8 @@ const HomeScreen = () => {
               name="brain"
               size={30}
               color="#2E7D32"
-            />          </View>
+            />
+          </View>
           <Text style={styles.topBarAppName}>
             Care<Text style={styles.topBarAppNameAccent}>Mind</Text>
           </Text>
@@ -57,13 +59,15 @@ const HomeScreen = () => {
             <MaterialCommunityIcons name="bell-outline" size={21} color="#374151" />
             <View style={styles.notifBadge} />
           </TouchableOpacity>
-
-
-    
+            <TouchableOpacity style={styles.topBarIconBtn}   
+            onPress={() => logoutUser(navigation)}  >
+            <MaterialCommunityIcons name="logout" size={21} color="#374151" />
+             
+          </TouchableOpacity>
         </View>
       </View>
 
-      {/* ─── SCROLL CONTENT ─── */}
+      {/* SCROLL CONTENT */}
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.content}
@@ -168,7 +172,7 @@ const HomeScreen = () => {
         </View>
       </ScrollView>
 
-      {/* ─── BOTTOM TAB BAR ─── */}
+      {/* BOTTOM TAB BAR */}
       <View style={styles.bottomBar}>
         {TABS.map((tab) => {
           const isActive = activeTab === tab.key;
