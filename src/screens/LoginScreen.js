@@ -23,7 +23,6 @@ const LoginScreen = ({ navigation }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
 
-  // Prefill saved credentials on mount
   useEffect(() => {
     loadSavedCredentials();
   }, []);
@@ -114,7 +113,6 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.container}>
           <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
-          {/* Header */}
           <View style={styles.header}>
             <View style={styles.logoBox}>
               <MaterialCommunityIcons name="brain" size={40} color="#2E7D32" />
@@ -129,11 +127,9 @@ const LoginScreen = ({ navigation }) => {
             </Text>
           </View>
 
-          {/* Login Card */}
           <View style={styles.card}>
             <Text style={styles.sectionTitle}>Patient Login</Text>
 
-            {/* Email Input */}
             <View style={styles.labelRow}>
               <MaterialCommunityIcons name="email-outline" size={18} color="#6B7280" />
               <Text style={styles.labelText}>Email Address</Text>
@@ -151,7 +147,6 @@ const LoginScreen = ({ navigation }) => {
               editable={!loading}
             />
 
-            {/* Password Input */}
             <View style={styles.labelRow}>
               <MaterialCommunityIcons name="lock-outline" size={18} color="#6B7280" />
               <Text style={styles.labelText}>Password</Text>
@@ -201,7 +196,6 @@ const LoginScreen = ({ navigation }) => {
               </TouchableOpacity>
             </View>
 
-            {/* Login Button */}
             <TouchableOpacity
               style={[styles.button, loading && styles.buttonDisabled]}
               onPress={handleLogin}
