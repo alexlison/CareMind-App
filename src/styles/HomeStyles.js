@@ -1,480 +1,444 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
+const C = {
+  bg:           '#F0F4F0',
+  surface:      '#FFFFFF',
+  surfaceAlt:   '#F7FAF7',
+  primary:      '#1B5E20',
+  primaryMid:   '#2E7D32',
+  primaryLight: '#4CAF50',
+  primaryGlow:  '#E8F5E9',
+  accent:       '#FF6F00',
+  accentLight:  '#FFF3E0',
+  danger:       '#C62828',
+  dangerLight:  '#FFEBEE',
+  warn:         '#E65100',
+  warnLight:    '#FFF8E1',
+  textPrimary:  '#0D1F0E',
+  textSecond:   '#4A6741',
+  textMuted:    '#8DA887',
+  border:       '#D6E8D6',
+  borderLight:  '#EAF3EA',
+  white:        '#FFFFFF',
+  overlay:      'rgba(27,94,32,0.06)',
+  blueLight:    '#E3F2FD',
+  purpleLight:  '#F3E5F5',
+};
+
+const shadow = (color, elev, opacity) => Platform.select({
+  ios:     { shadowColor: color, shadowOpacity: opacity, shadowRadius: elev * 2, shadowOffset: { width: 0, height: elev } },
+  android: { elevation: elev },
+});
 
 export default StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#F0F4F0',
-  },
 
-  container: {
-    flex: 1,
-  },
+  // ── Layout
+  safeArea:         { flex: 1, backgroundColor: C.bg },
+  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: C.bg },
+  loadingText:      { marginTop: 14, fontSize: 15, color: C.textSecond, fontWeight: '600' },
+  container:        { flex: 1 },
+  content:          { paddingHorizontal: 18, paddingTop: 16, paddingBottom: 110 },
 
-  /* ─── TOP BAR ─── */
+  // ── Top Bar
   topBar: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingVertical: 18,
-    backgroundColor: '#ffffff',
+    paddingHorizontal: 18,
+    paddingVertical: 14,
+    backgroundColor: C.surface,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5EDE5',
-    ...Platform.select({
-      ios: { shadowColor: '#000', shadowOpacity: 0.06, shadowRadius: 8, shadowOffset: { width: 0, height: 2 } },
-      android: { elevation: 4 },
-    }),
+    borderBottomColor: C.borderLight,
+    ...shadow(C.primary, 3, 0.06),
   },
-
-  topBarLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-
-  topBarLogoCircle: {
-    width: 38,
-    height: 38,
-    borderRadius: 10,
-    padding:4,
-    backgroundColor: '#e0f5e2',
+  topBarLeft:  { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  topBarRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  logoCircle: {
+    width: 44,
+    height: 44,
+    borderRadius: 14,
+    backgroundColor: C.primaryGlow,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: C.border,
   },
-
-  topBarAppName: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#111827',
-    letterSpacing: -0.5,
-  },
-
-  topBarAppNameAccent: {
-    fontSize: 20,
-    fontWeight: '300',
-    color: '#2E7D32',
-    letterSpacing: -0.5,
-  },
-
-  topBarRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-
-  topBarIconBtn: {
-    width: 38,
-    height: 38,
-    marginEnd:2,
-    borderRadius: 12,
-    backgroundColor: '#F0F4F0',
+  title:  { fontSize: 22, fontWeight: '800', color: C.primary, letterSpacing: -0.5 },
+  light:  { fontWeight: '300', color: C.textSecond },
+  iconButton: {
+    width: 42,
+    height: 42,
+    borderRadius: 13,
+    backgroundColor: C.surfaceAlt,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: C.borderLight,
+    position: 'relative',
   },
-
-  notifBadge: {
+  badge: {
     position: 'absolute',
-    top: 6,
-    right: 6,
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#EF4444',
-    borderWidth: 1.5,
-    borderColor: '#FFFFFF',
-  },
-
-  profileBtn: {
-    width: 38,
-    height: 38,
-    borderRadius: 20,
-    backgroundColor: '#E8F5E9',
+    top: 5,
+    right: 5,
+    minWidth: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: C.danger,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
-    borderColor: '#b9debb',
+    borderColor: C.white,
   },
+  badgeText: { color: C.white, fontSize: 10, fontWeight: '800' },
 
-  /* ─── SCROLL CONTENT ─── */
-  content: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 100,
-  },
-
-  /* ─── HEADER GREETING ─── */
-  greetingRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 20,
-  },
-
-  greeting: {
-    fontSize: 14,
-    color: '#6B7280',
-    fontWeight: '500',
-    letterSpacing: 0.2,
-  },
-
-  userName: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#111827',
-    letterSpacing: -0.8,
-    marginTop: 2,
-  },
-
-  dateBadge: {
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#E5EDE5',
-    alignItems: 'center',
-  },
-
-  dateBadgeDay: {
-    fontSize: 10,
-    color: '#6B7280',
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-  },
-
-  dateBadgeNum: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#2E7D32',
-    lineHeight: 24,
-  },
-
-  /* ─── HEALTH HERO CARD ─── */
+  // ── Hero Card
   heroCard: {
-    borderRadius: 22,
+    backgroundColor: C.primary,
+    borderRadius: 28,
+    padding: 24,
+    marginBottom: 18,
     overflow: 'hidden',
-    marginBottom: 16,
-    ...Platform.select({
-      ios: { shadowColor: '#2E7D32', shadowOpacity: 0.2, shadowRadius: 14, shadowOffset: { width: 0, height: 6 } },
-      android: { elevation: 6 },
-    }),
+    position: 'relative',
+    minHeight: 108,
+    ...shadow(C.primary, 8, 0.25),
   },
-
-  heroGradientInner: {
-    backgroundColor: '#2E7D32',
-    borderRadius: 22,
-    padding: 20,
+  heroBlob1: {
+    position: 'absolute',
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    backgroundColor: 'rgba(255,255,255,0.05)',
+    top: -50,
+    right: -40,
   },
-
-  heroTop: {
+  heroBlob2: {
+    position: 'absolute',
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    backgroundColor: 'rgba(255,255,255,0.04)',
+    bottom: -25,
+    left: 16,
+  },
+  heroContent:  { zIndex: 1 },
+  heroGreeting: { fontSize: 26, fontWeight: '800', color: C.white, marginBottom: 7,paddingTop:15,paddingBottom:10, letterSpacing: -0.3 },
+  heroDateRow:  { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  heroDate:     { fontSize: 13, color: 'rgba(255,255,255,0.72)', fontWeight: '500' },
+  heroPriorityBadge: {
+    position: 'absolute',
+    top: 12,
+    right: 15,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 16,
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.3)',
   },
+  heroPriorityText:  { color: C.white, fontSize: 10, fontWeight: '400', letterSpacing: 0.5 },
+  priorityBadgecritical: { backgroundColor: '#B71C1C' },
+  priorityBadgehigh:     { backgroundColor: '#E65100' },
+  priorityBadgemedium:   { backgroundColor: '#F57F17' },
 
-  heroStatusTag: {
+activitiesCard: {
+  backgroundColor: '#FFFFFF',
+  borderRadius: 20,
+  padding: 16,
+  marginBottom: 20,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 8,
+  elevation: 4,
+  borderWidth: 1,
+  borderColor: '#E5E7EB',
+},
+
+activitiesHeader: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginBottom: 16,
+  paddingBottom: 12,
+  borderBottomWidth: 1,
+  borderBottomColor: '#F0F4F0',
+},
+
+activitiesTitle: {
+  fontSize: 16,
+  fontWeight: '600',
+  color: '#1F2937',
+  marginLeft: 8,
+},
+
+  // ── Summary Cards
+  summaryContainer: { flexDirection: 'row', gap: 10, marginBottom: 24 },
+  summaryCard: {
+    flex: 1,
+    borderRadius: 18,
+    padding: 5,
+    paddingTop:10,
+    paddingBottom:10,
+    alignItems: 'center',
+    gap: 3,
+    borderWidth: 1,
+    borderColor: C.borderLight,
+    ...shadow('#000', 2, 0.04),
+  },
+  summaryCardTotal:  { backgroundColor: C.primaryGlow,  borderColor: C.border },
+  summaryUpcoming:   { backgroundColor: '#FFF3E0',       borderColor: '#FFE0B2' },
+  summaryCompleted:  { backgroundColor: C.primaryGlow,   borderColor: C.border },
+  summaryMissed:     { backgroundColor: C.dangerLight,   borderColor: '#FFCDD2' },
+  summaryNumber:     { fontSize: 21, fontWeight: '800', color: C.textPrimary },
+  summaryLabel:      { fontSize: 10, color: C.textMuted, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.3 },
+
+  // ── Section Header
+  sectionHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 14, gap: 10 },
+  sectionTitle:     { fontSize: 17, fontWeight: '800', color: C.textPrimary, letterSpacing: -0.2 },
+  sectionDivider:   { flex: 1, height: 1, backgroundColor: C.borderLight },
+
+  // ── Tab Pills
+  tabPillRow: { flexDirection: 'row', gap: 8, marginBottom: 14 },
+  tabPill: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
-    backgroundColor: 'rgba(255,255,255,0.18)',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
+    paddingHorizontal: 11,
+    paddingVertical: 8,
     borderRadius: 20,
+    backgroundColor: C.surface,
+    borderWidth: 1.5,
+    borderColor: C.border,
   },
+  tabPillActiveGreen: { backgroundColor: C.primaryMid, borderColor: C.primaryMid },
+  tabPillActiveRed:   { backgroundColor: C.danger,     borderColor: C.danger },
+  tabPillText:        { fontSize: 12, fontWeight: '600', color: C.textSecond },
+  tabPillTextActive:  { color: C.white, fontWeight: '700' },
+  tabPillCount:           { backgroundColor: C.overlay, borderRadius: 10, paddingHorizontal: 5, paddingVertical: 1 },
+  tabPillCountActive:     { backgroundColor: 'rgba(255,255,255,0.25)' },
+  tabPillCountText:       { fontSize: 11, fontWeight: '700', color: C.textSecond },
+  tabPillCountTextActive: { color: C.white },
 
-  heroStatusDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: '#86EFAC',
-  },
+  // ── Tasks Section
+  tasksSection: { marginBottom: 28, minHeight: 120 },
 
-  heroStatusText: {
-    color: '#FFFFFF',
-    fontSize: 11,
-    fontWeight: '600',
-    letterSpacing: 0.3,
-  },
-
-  heroHeartBox: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  heroTitle: {
-    color: '#FFFFFF',
-    fontSize: 20,
-    fontWeight: '800',
-    marginBottom: 4,
-    letterSpacing: -0.4,
-  },
-
-  heroSub: {
-    color: '#B9F5BB',
-    fontSize: 13,
-    marginBottom: 16,
-  },
-
-  heroStats: {
-    flexDirection: 'row',
-    gap: 10,
-  },
-
-  heroStatChip: {
-    flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.14)',
-    borderRadius: 12,
-    padding: 10,
-    alignItems: 'center',
-  },
-
-  heroStatValue: {
-    color: '#FFFFFF',
-    fontWeight: '800',
-    fontSize: 15,
-  },
-
-  heroStatLabel: {
-    color: '#B9F5BB',
-    fontSize: 10,
-    fontWeight: '600',
-    marginTop: 2,
-    letterSpacing: 0.3,
-  },
-
-  /* ─── REMINDER CARD ─── */
-  reminderCard: {
-    backgroundColor: '#FFFFFF',
+  // ── Task Card
+  taskCard: {
+    backgroundColor: C.surface,
     borderRadius: 18,
-    padding: 16,
-    marginBottom: 22,
+    padding: 14,
+    marginBottom: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     borderLeftWidth: 4,
-    borderLeftColor: '#2E7D32',
-    ...Platform.select({
-      ios: { shadowColor: '#000', shadowOpacity: 0.07, shadowRadius: 10 },
-      android: { elevation: 3 },
-    }),
+    borderLeftColor: C.primaryMid,
+    borderWidth: 1,
+    borderColor: C.borderLight,
+    ...shadow('#000', 3, 0.05),
   },
-
-  reminderLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-
-  reminderIconBox: {
-    width: 44,
-    height: 44,
-    borderRadius: 13,
-    backgroundColor: '#E8F5E9',
+  taskCardMissed:    { borderLeftColor: C.danger },
+  taskCardCompleted: { borderLeftColor: C.primaryMid },
+  taskCardLate:      { borderLeftColor: C.warn },
+  taskIcon: {
+    width: 50,
+    height: 50,
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: 14,
   },
-
-  reminderTitle: {
-    color: '#111827',
-    fontWeight: '700',
-    fontSize: 14,
-  },
-
-  reminderTime: {
-    color: '#6B7280',
-    fontSize: 12,
-    marginTop: 2,
-  },
-
-  reminderBtn: {
-    backgroundColor: '#2E7D32',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 11,
-  },
-
-  reminderBtnText: {
-    color: '#FFFFFF',
-    fontWeight: '700',
-    fontSize: 13,
-  },
-
-  /* ─── SECTION ─── */
-  sectionRow: {
+  taskIconBgMedicine: { backgroundColor: C.primaryGlow },
+  taskIconBgRoutine:  { backgroundColor: C.accentLight },
+  taskInfo:     { flex: 1 },
+  taskName:     { fontSize: 16, fontWeight: '700', color: C.textPrimary, marginBottom: 3 },
+  taskMetaRow:  { flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 4 },
+  taskTime:     { fontSize: 13, color: C.textMuted, fontWeight: '500' },
+  lateBadge: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 14,
+    gap: 4,
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
   },
+  lateBadgeRed:   { backgroundColor: C.dangerLight },
+  lateBadgeGreen: { backgroundColor: C.primaryGlow },
+  lateText:       { fontSize: 12, fontWeight: '700' },
+  lateTextRed:    { color: C.danger },
+  lateTextGreen:  { color: C.primaryMid },
 
-  sectionHeading: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: '#111827',
-    letterSpacing: -0.4,
+  // Status pill
+  statusPill:       { width: 34, height: 34, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
+  statusPillGood:   { backgroundColor: C.primaryGlow },
+  statusPillWarn:   { backgroundColor: C.warnLight },
+  statusPillDone:   { backgroundColor: C.primaryGlow },
+  statusPillMissed: { backgroundColor: C.dangerLight },
+
+  // ── Empty State
+  emptyTasksContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 40,
+    backgroundColor: C.surface,
+    borderRadius: 22,
+    borderWidth: 1.5,
+    borderColor: C.borderLight,
+    borderStyle: 'dashed',
   },
-
-  seeAllText: {
-    fontSize: 13,
-    color: '#2E7D32',
-    fontWeight: '600',
-  },
-
-  /* ─── GRID CARDS ─── */
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-
-  card: {
-    width: '48%',
-    backgroundColor: '#FFFFFF',
+  emptyIconWrap: {
+    width: 64,
+    height: 64,
     borderRadius: 18,
-    paddingVertical: 22,
-    paddingHorizontal: 14,
-    marginBottom: 14,
-    alignItems: 'flex-start',
-    ...Platform.select({
-      ios: { shadowColor: '#000', shadowOpacity: 0.06, shadowRadius: 10 },
-      android: { elevation: 3 },
-    }),
-  },
-
-  iconBox: {
-    width: 46,
-    height: 46,
-    borderRadius: 14,
-    backgroundColor: '#E8F5E9',
+    backgroundColor: C.primaryGlow,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 12,
   },
+  emptyTasksText: { fontSize: 15, color: C.textMuted, fontWeight: '600' },
 
-  cardTitle: {
-    fontWeight: '700',
-    color: '#111827',
-    fontSize: 14,
-  },
-
-  cardSub: {
-    fontSize: 11,
-    color: '#9CA3AF',
-    marginTop: 3,
-    fontWeight: '500',
-  },
-
-  cardArrow: {
-    marginTop: 10,
-  },
-
-  /* ─── FOOTER CARE CARD ─── */
-  footerCard: {
-    flexDirection: 'row',
-    gap: 12,
-    backgroundColor: '#FFFFFF',
-    padding: 16,
-    borderRadius: 16,
-    marginTop: 6,
-    alignItems: 'center',
+  // ── Quick Access Grid
+  grid: { flexDirection: 'row',flexWrap: 'wrap', gap: 12, marginBottom: 24 },
+  gridCard: {
+    width: (width - 36 - 12) / 2,
+    backgroundColor: C.surface,
+    borderRadius: 22,
+    padding: 18,
     borderWidth: 1,
-    borderColor: '#E8F5E9',
+    borderColor: C.borderLight,
+    ...shadow('#000', 4, 0.06),
   },
+  quickCardMedicine:  { borderColor: C.border,    backgroundColor: C.surfaceAlt },
+  quickCardRoutine:   { borderColor: '#BBDEFB',   backgroundColor: '#F8FBFF' },
+  quickCardRelations: { borderColor: '#E1BEE7',   backgroundColor: '#FCF8FF' },
+  quickCardEmergency: { borderColor: '#FFCDD2',   backgroundColor: '#FFF5F5' },
+  gridIconBox: {
+    width: 58,
+    height: 58,
+    borderRadius: 17,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 12,
+    position: 'relative',
+  },
+  quickIconMedicine:  { backgroundColor: C.primaryGlow },
+  quickIconRoutine:   { backgroundColor: C.blueLight },
+  quickIconRelations: { backgroundColor: C.purpleLight },
+  quickIconEmergency: { backgroundColor: C.dangerLight },
+  gridBadge: {
+    position: 'absolute',
+    top: -4,
+    right: -4,
+    minWidth: 22,
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: C.primaryMid,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: C.white,
+  },
+  gridBadgeText:      { color: C.white, fontSize: 11, fontWeight: '800' },
+  gridTitle:          { fontSize: 15, fontWeight: '700', color: C.textPrimary, marginBottom: 3 },
+  gridTitleEmergency: { color: C.danger },
 
-  footerIconBox: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
-    backgroundColor: '#E8F5E9',
+  // ── Priority Banner
+  priorityCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 22,
+    padding: 18,
+    marginBottom: 16,
+    gap: 14,
+    ...shadow('#000', 5, 0.15),
+  },
+  prioritycritical: { backgroundColor: '#B71C1C' },
+  priorityhigh:     { backgroundColor: '#E65100' },
+  prioritymedium:   { backgroundColor: '#F57F17' },
+  priorityIconWrap: {
+    width: 52,
+    height: 52,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  priorityTextContainer: { flex: 1 },
+  priorityTitle:   { color: C.white, fontSize: 17, fontWeight: '800', marginBottom: 3 },
+  prioritySubtext: { color: 'rgba(255,255,255,0.85)', fontSize: 13, fontWeight: '500' },
+
+  // ── Caregiver Card
+  caregiverCard: {
+    backgroundColor: C.surface,
+    borderRadius: 22,
+    padding: 18,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: C.border,
+    marginBottom: 10,
+    ...shadow(C.primary, 4, 0.08),
+  },
+  caregiverLeft: { flexDirection: 'row', alignItems: 'center', flex: 1, gap: 14 },
+  caregiverIcon: {
+    width: 50,
+    height: 50,
+    borderRadius: 15,
+    backgroundColor: C.primaryGlow,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: C.border,
+  },
+  caregiverTitle:     { fontSize: 15, fontWeight: '700', color: C.textPrimary, marginBottom: 3 },
+  caregiverStatusRow: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  caregiverOnlineDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: C.primaryLight },
+  caregiverSubtext:   { fontSize: 13, color: C.textSecond, fontWeight: '500' },
+  caregiverChevronWrap: {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    backgroundColor: C.primaryGlow,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
-  footerTextBlock: {
-    flex: 1,
-  },
-
-  footerTitle: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#111827',
-    marginBottom: 2,
-  },
-
-  footerText: {
-    fontSize: 12,
-    color: '#6B7280',
-    lineHeight: 16,
-  },
-
-  /* ─── BOTTOM TAB BAR ─── */
+  // ── Bottom Navigation
   bottomBar: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
-    paddingBottom: Platform.OS === 'ios' ? 24 : 10,
-    paddingTop: 14,
-    paddingHorizontal: 10,
-    borderTopWidth: 2,
-    borderTopColor: '#d0e3d0',
-    ...Platform.select({
-      ios: { shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 12, shadowOffset: { width: 0, height: -4 } },
-      android: { elevation: 10 },
-    }),
+    backgroundColor: C.surface,
+    paddingBottom: Platform.OS === 'ios' ? 26 : 12,
+    paddingTop: 10,
+    paddingHorizontal: 8,
+    borderTopWidth: 1,
+    borderTopColor: C.borderLight,
+    ...shadow('#000', 12, 0.08),
   },
-
-  tabItem: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 4,
-    gap: 3,
-  },
-
-  tabLabel: {
-    fontSize: 10,
-    fontWeight: '600',
-    color: '#9CA3AF',
-    letterSpacing: 0.2,
-  },
-
-  tabLabelActive: {
-    color: '#2E7D32',
-  },
-
-  tabIconBox: {
-    width: 32,
-    height: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
-  },
-
-  tabIconBoxActive: {
-    backgroundColor: '#E8F5E9',
-  },
-
-  /* FAB center tab */
-  fabTab: {
-    width: 52,
-    height: 52,
-    borderRadius: 16,
-    backgroundColor: '#2E7D32',
+  tabItem:           { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3 },
+  tabIconWrap:       { width: 36, height: 28, alignItems: 'center', justifyContent: 'center', borderRadius: 10 },
+  tabIconWrapActive: { backgroundColor: C.primaryGlow },
+  tabLabel:          { fontSize: 11, color: C.textMuted, fontWeight: '600' },
+  tabLabelActive:    { color: C.primaryMid, fontWeight: '700' },
+  fabButton: {
+    width: 56,
+    height: 56,
+    borderRadius: 18,
+    backgroundColor: C.primaryMid,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: -20,
-    ...Platform.select({
-      ios: { shadowColor: '#2E7D32', shadowOpacity: 0.4, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } },
-      android: { elevation: 8 },
-    }),
+    marginBottom: 2,
+    ...shadow(C.primaryMid, 8, 0.35),
   },
+  
+
+
 });
