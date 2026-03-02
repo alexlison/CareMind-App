@@ -5,9 +5,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#F0F4F0',
   },
-  keyboardView: {
-    flex: 1,
-  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -22,6 +19,7 @@ export default StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
+    zIndex: 10,
   },
   backBtn: {
     padding: 8,
@@ -55,13 +53,18 @@ export default StyleSheet.create({
     padding: 8,
     borderRadius: 8,
   },
+  contentContainer: {
+    flex: 1,
+  },
+  keyboardView: {
+    flex: 1,
+  },
+  chatContainer: {
+    flex: 1,
+  },
   messagesList: {
     padding: 16,
     paddingBottom: 16,
-  },
-  emptyList: {
-    flex: 1,
-    justifyContent: 'center',
   },
   bubbleRow: {
     flexDirection: 'row',
@@ -81,9 +84,6 @@ export default StyleSheet.create({
     marginRight: 8,
     borderWidth: 1,
     borderColor: '#E8F5E9',
-  },
-  welcomeAvatar: {
-    backgroundColor: '#FFA000',
   },
   bubble: {
     maxWidth: '80%',
@@ -105,25 +105,6 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E5E7EB',
   },
-  welcomeBubble: {
-    backgroundColor: '#FFF8E1',
-    borderColor: '#FFE082',
-    borderWidth: 1,
-  },
-  botNameText: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: '#2E7D32',
-    marginBottom: 4,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-  },
-  welcomeTitle: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#FF8F00',
-    marginBottom: 6,
-  },
   bubbleText: {
     fontSize: 15,
     color: '#1F2937',
@@ -131,9 +112,6 @@ export default StyleSheet.create({
   },
   userBubbleText: {
     color: '#FFFFFF',
-  },
-  welcomeText: {
-    color: '#5D4037',
   },
   timeText: {
     fontSize: 9,
@@ -175,8 +153,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
-    paddingVertical: 10,
-    backgroundColor: '#FFFFFF',
+    paddingVertical: 17,
+    backgroundColor: '#ebf2ea',
     borderTopWidth: 1,
     borderTopColor: '#E5E7EB',
   },
@@ -214,67 +192,76 @@ export default StyleSheet.create({
     shadowOpacity: 0,
     elevation: 0,
   },
-  emptyContainer: {
-    flex: 1,
+  // Welcome screen styles - scrollable
+  welcomeScrollContent: {
+    flexGrow: 1,
     justifyContent: 'center',
+    paddingVertical: 20,
+  },
+  welcomeContent: {
     alignItems: 'center',
     paddingHorizontal: 24,
-    paddingVertical: 40,
   },
-  emptyIconBox: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+  welcomeIconBox: {
+    width: 120,
+    height: 120,
+    borderRadius: 80,
     backgroundColor: '#E8F5E9',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 24,
-    borderWidth: 3,
+    borderWidth: 4,
     borderColor: '#2E7D32',
   },
-  emptyTitle: {
-    fontSize: 24,
+  welcomeTitle: {
+    fontSize: 28,
     fontWeight: '700',
     color: '#1F2937',
     marginBottom: 8,
     textAlign: 'center',
   },
-  emptySubtitle: {
-    fontSize: 15,
+  welcomeSubtitle: {
+    fontSize: 16,
     color: '#6B7280',
     textAlign: 'center',
-    marginBottom: 28,
-    lineHeight: 22,
+    marginBottom: 32,
+    lineHeight: 24,
+    paddingHorizontal: 20,
   },
   suggestionsLabel: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '600',
     color: '#374151',
     marginBottom: 16,
+    textAlign: 'center',
   },
-  chipsContainer: {
+  suggestionsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: 8,
+    gap: 12,
+    paddingHorizontal: 16,
   },
-  chip: {
+  suggestionChip: {
     backgroundColor: '#FFFFFF',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
+    paddingHorizontal: 20,
+    paddingVertical: 14,
     borderRadius: 30,
     borderWidth: 1,
     borderColor: '#E5E7EB',
     margin: 4,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
     elevation: 2,
   },
-  chipText: {
+  suggestionText: {
     fontSize: 14,
     color: '#2E7D32',
     fontWeight: '500',
+  },
+  bottomSpacer: {
+    height: 20,
   },
 });
