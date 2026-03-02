@@ -25,6 +25,7 @@ import {
   checkPendingNotification,
 } from './src/services/PushNotificationService';
 import CaregiverInfoScreen from './src/screens/CaregiverInfoScreen';
+import ChatScreen from './src/screens/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 const navigationRef = React.createRef();
@@ -112,6 +113,8 @@ const App = () => {
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="MyDay" component={MyDayScreen} />
         <Stack.Screen name="CaregiverInfo" component={CaregiverInfoScreen} />
+        <Stack.Screen name="Chatbot" component={ChatScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

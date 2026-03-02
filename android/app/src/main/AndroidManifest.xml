@@ -7,6 +7,18 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+```
+
+---
+
+## Step 4 — Add Google Speech API key to `.env`
+
+You already have `GEMINI_API_KEY`. Add one more line — it's the **same Google API key** (no separate key needed if you enable Speech-to-Text in your Google Cloud console):
+```
+GOOGLE_SPEECH_API_KEY=AIzaSy...your_key
 
     <application
       android:name=".MainApplication"

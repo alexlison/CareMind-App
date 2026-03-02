@@ -103,7 +103,7 @@ const HomeScreen = ({ navigation }) => {
 
   const handleTabPress = (tab) => {
     setActiveTab(tab.key);
-    if      (tab.key === 'assistant') Alert.alert('Coming Soon', 'AI Assistant coming soon.');
+    if      (tab.key === 'assistant') navigation.navigate('Chatbot');
     else if (tab.key === 'profile')   navigation.navigate('Profile');
     else if (tab.key === 'contacts')  navigation.navigate('Relations');
     else if (tab.key === 'myday')     navigation.navigate('MyDay');
